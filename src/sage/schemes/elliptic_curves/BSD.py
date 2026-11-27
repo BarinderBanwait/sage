@@ -116,6 +116,7 @@ def mwrank_two_descent_work(E, two_tor_rk) -> tuple:
 
     EXAMPLES::
 
+        sage: # needs eclib
         sage: from sage.schemes.elliptic_curves.BSD import mwrank_two_descent_work
         sage: E = EllipticCurve('14a')
         sage: mwrank_two_descent_work(E, E.two_torsion_rank())
@@ -160,7 +161,7 @@ def pari_two_descent_work(E) -> tuple:
         sage: pari_two_descent_work(E)
         (0, 0, 0, 0, [])
         sage: E = EllipticCurve('37a')
-        sage: pari_two_descent_work(E) # random, up to sign
+        sage: pari_two_descent_work(E) # random, up to sign, needs eclib
         (1, 1, 0, 0, [(0 : -1 : 1)])
         sage: E = EllipticCurve('210e7')
         sage: pari_two_descent_work(E)
@@ -279,6 +280,7 @@ def _kernel_has_local_point(phi, p):
     EXAMPLES::
 
         sage: from sage.schemes.elliptic_curves.BSD import _kernel_has_local_point
+        sage: # needs eclib
         sage: E = EllipticCurve('11a1')
         sage: phis = E.isogenies_prime_degree(5)
         sage: any(_kernel_has_local_point(phi, 5) for phi in phis)
@@ -483,6 +485,7 @@ def _stein_wuthrich(E, p, analytic):
 
         sage: from sage.schemes.elliptic_curves.BSD import _stein_wuthrich
         sage: from sage.schemes.elliptic_curves.bsd_certificates import _AnalyticData
+        sage: # needs eclib
         sage: E = EllipticCurve('11a1')
         sage: _stein_wuthrich(E, 11, _AnalyticData(E, True))['reference']
         'SW2013, Theorem 8.1'
@@ -690,6 +693,7 @@ def prove_BSD(E, verbosity=0, two_desc='mwrank', proof=None, secs_hi=5,
 
     EXAMPLES::
 
+        sage: # needs eclib
         sage: EllipticCurve('11a1').prove_BSD(proof=True)
         []
         sage: EllipticCurve('91b1').prove_BSD(proof=True)
@@ -701,6 +705,7 @@ def prove_BSD(E, verbosity=0, two_desc='mwrank', proof=None, secs_hi=5,
 
     Inspect the evidence and the conditional mode::
 
+        sage: # needs eclib
         sage: E = EllipticCurve('11a1')
         sage: B = E.prove_BSD(proof=True, return_BSD=True)
         sage: B.primes, B.rigorous, B.assumptions
@@ -719,6 +724,7 @@ def prove_BSD(E, verbosity=0, two_desc='mwrank', proof=None, secs_hi=5,
 
     No assumption is reused by a subsequent rigorous call::
 
+        sage: # needs eclib
         sage: E.prove_BSD(proof=True, rigorous=True, return_BSD=True).assumptions
         []
         sage: for backend in ['mwrank', 'pari', 'sage']:
